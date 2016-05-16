@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2005/10/profile">
+    #if $encoding == 'utf8'
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    #end if    
+    <title>$station.location</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <script src="gauge.js"></script>
+    <script type="text/javascript">
+      function openURL(urlname)
+      {
+        window.location=urlname;
+      }
+      function openNoaaFile(date)
+      {
+        var url = "NOAA/NOAA-";
+        url = url + date;
+        url = url + ".txt";
+        window.location=url;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="main">
+    <header style="background-image: url(force5.png)">
+      <div class="container">
+	<img width="100px" height="100px" src="logo.png" align="left" />
+        <h1>$station.location</h1>
+	<p>$current.dateTime</p>
+	<p>Sunrise: $almanac.sunrise</p>
+	<p>Sunset: $almanac.sunset</p>
+      </div>
+	<div class="menu">
+	  <a class="tab-active" href="index.html" alt="Overview">Overview</a>
+	  <a class="tab-inactive"  href="map.html" alt="Map">Map</a>
+	  <a class="tab-inactive" href="graphs.html" alt="Graphs">Graphs</a>
+	  <a class="tab-inactive" href="links.html" alt="Links">Links</a>
+	</div>
+    </header>
+    <div class="container">
+      <div class="column" id ="left-column">
+	<div class="small-box">
+	  <canvas id="gauge2" width="300" height="300"
+		  data-type="canv-gauge"
+		  data-title="Wind Speed"
+		  data-min-value="0"
+		  data-max-value="30"
+		  data-major-ticks="0 5 10 15 20 25 30"
+		  data-minor-ticks="10"
+		  data-stroke-ticks="true"
+		  data-units="m/s"
+		  data-value-format="2.1"
+		  data-glow="false"
+		  data-colors-needle="#000000 #000000"
+		  data-colors-needle-circle-outerstart="#000000"
+		  data-colors-needle-circle-outerend="#000000"
+		  data-highlights="false"
+		  data-startangle="40"
+		  data-ticksangle="280"
+		  data-valuebox-visible="true"
+		  data-valuetext-visible="true"
+		  data-circles-outervisible="false"
+		  data-circles-middlevisible="false"
+		  data-circles-innervisible="false"
+		  data-needle-type="arrow"
+		  data-needle-circle-inner="false"
+		  data-needle-circle-outer="true"
+		  data-needle-circle-size="7"
+		  data-needle-start="65"
+		  data-needle-end="80"
+		  data-value="$current.windSpeed"
+		  ></canvas>
+	</div>
+	<div class="small-box">
+	  <canvas id="gauge1" width="300" height="300"
+		  data-type="canv-gauge"
+		  data-title="Wind Direction"
+		  data-min-value="0"
+		  data-max-value="360"
+		  data-major-ticks="N NE E SE S SW W NW N"
+		  data-minor-ticks="22"
+		  data-stroke-ticks="false"
+		  data-units="$current.windDir.ordinal_compass"
+		  data-glow="false"
+		  data-colors-needle="black black"
+		  data-colors-needle-circle-outerstart="black"
+		  data-colors-needle-circle-outerend="black"
+		  data-colors-circle-innerstart="#ff9966"
+		  data-colors-circle-innerend="#ff9966"
+		  data-highlights="false"
+		  data-startangle="180"
+		  data-ticksangle="360"
+		  data-valuebox-visible="false"
+		  data-valuetext-visible="false"
+		  data-circles-outervisible="false"
+		  data-circles-middlevisible="false"
+		  data-circles-innervisible="false"
+		  data-needle-type="arrow"
+		  data-needle-circle-inner="false"
+		  data-needle-circle-outer="true"
+		  data-needle-circle-size="7"
+		  data-needle-end="70"
+		  data-value="$current.windDir"
+		  ></canvas>
+	</div>
+	<div class="small-box">
+	  <canvas id="gauge1" width="300" height="300"
+		  data-type="canv-gauge"
+		  data-title="Temp"
+		  data-min-value="-30"
+		  data-max-value="30"
+		  data-major-ticks="-30 -20 -10 0 10 20 30"
+		  data-minor-ticks="10"
+		  data-stroke-ticks="true"
+		  data-units="C"
+		  data-value-format="2.1"
+		  data-glow="false"
+		  data-colors-needle="#000000 #000000"
+		  data-colors-needle-circle-outerstart="#000000"
+		  data-colors-needle-circle-outerend="#000000"
+		  data-highlights="-30 0 #92cbff, 0 30 #ff9292"
+		  data-startangle="40"
+		  data-ticksangle="280"
+		  data-valuebox-visible="true"
+		  data-valuetext-visible="true"
+		  data-circles-outervisible="false"
+		  data-circles-middlevisible="false"
+		  data-circles-innervisible="false"
+		  data-needle-type="arrow"
+		  data-needle-circle-inner="false"
+		  data-needle-circle-outer="true"
+		  data-needle-circle-size="7"
+		  data-needle-start="65"
+		  data-needle-end="80"
+		  data-value="$current.outTemp"
+		  ></canvas>
+	</div>
+	<div class="small-box">
+	  <canvas id="gauge1" width="300" height="300"
+		  data-type="canv-gauge"
+		  data-title="Barometer"
+		  data-min-value="950"
+		  data-max-value="1050"
+		  data-major-ticks="950 960 970 980 990 1000 1010 1020 1030 1040 1050"
+		  data-minor-ticks="10"
+		  data-stroke-ticks="true"
+		  data-units="mbar"
+		  data-value-format="4.0"
+		  data-glow="false"
+		  data-colors-needle="#000000 #000000"
+		  data-colors-needle-circle-outerstart="#000000"
+		  data-colors-needle-circle-outerend="#000000"
+		  data-highlights="false"
+		  data-startangle="40"
+		  data-ticksangle="280"
+		  data-valuebox-visible="true"
+		  data-valuetext-visible="true"
+		  data-circles-outervisible="false"
+		  data-circles-middlevisible="false"
+		  data-circles-innervisible="false"
+		  data-needle-type="arrow"
+		  data-needle-circle-inner="false"
+		  data-needle-circle-outer="true"
+		  data-needle-circle-size="7"
+		  data-needle-start="65"
+		  data-needle-end="80"
+		  data-value="$current.barometer"
+		  ></canvas>
+	</div>
+      </div>
+      <div class="column" id="center-column">
+	<div class="large-box">
+          <img class="graph" src="daywind.png" alt="wind" />
+	</div>
+	<div class="large-box">
+          <img class="graph" src="daywindvec.png" alt="wind" />
+	</div>
+	<div class="large-box">
+          <img class="graph" src="daytempdew.png" alt="temperatures" />
+	</div>
+	<div class="large-box">
+          <img class="graph" src="daybarometer.png" alt="barometer"/>
+	</div>
+      </div>
+      <div class="column" id="right-column">
+	<div class="small-box">
+	  Weather report from YR
+	  Long list
+	</div>
+      </div>
+    </div>
+<!---      <iframe src="$Extras.wind_map" alt="Radar" id="radar" class="space small" width="500px" height="500px">ASADSASDASDAD</iframe> --->
+    <footer>
+      <div class="container">
+	The end
+      </div>
+    </footer>
+    </div>
+  </body>
+</html>
+    
