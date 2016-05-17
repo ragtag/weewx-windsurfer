@@ -4,44 +4,58 @@
     #if $encoding == 'utf8'
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     #end if    
-    <title>$station.location</title>
+    <title>$Extras.site_title - $station.location</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <link rel="icon" type="image/png" href="favicon.ico" />
     <script src="gauge.js"></script>
     <script type="text/javascript">
       function openURL(urlname)
       {
-        window.location=urlname;
+      window.location=urlname;
       }
       function openNoaaFile(date)
       {
-        var url = "NOAA/NOAA-";
-        url = url + date;
-        url = url + ".txt";
-        window.location=url;
+      var url = "NOAA/NOAA-";
+      url = url + date;
+      url = url + ".txt";
+      window.location=url;
       }
     </script>
   </head>
   <body>
     <div id="main">
-    <header style="background-image: url(force5.png)">
-      <div class="container">
-	<img width="100px" height="100px" src="logo.png" align="left" />
-        <h1>$station.location</h1>
-	<p>$current.dateTime</p>
-	<p>Sunrise: $almanac.sunrise</p>
-	<p>Sunset: $almanac.sunset</p>
-      </div>
+      <header>
+	<div class="container">
+	  <div class="column">
+ 	    <img id="logo" width="128px" height="128px" src="images/logo.png" />
+	  </div>
+          <h1>$Extras.site_title</h1>
+	  <div class="column">
+	    <img class="icon" src="images/globe.png" alt="Position" />
+	    <div class="location">
+	      $station.location <br />
+	      Lat: $station.latitude[0]&deg; $station.latitude[1]' <br />
+	      Long: $station.longitude[0]&deg; $station.longitude[1]'
+	    </div>
+	  </div>
+	  <div class="column">
+	    <img class="icon" src="images/sunrise.png" alt="Sunrise" /> $almanac.sunrise
+	  </div>
+	  <div class="column">
+	    <img class="icon" src="images/sunset.png" alt="Sunset" /> $almanac.sunset
+	  </div>
+	</div>
 	<div class="menu">
 	  <a class="tab-active" href="index.html" alt="Overview">Overview</a>
-	  <a class="tab-inactive"  href="map.html" alt="Map">Map</a>
-	  <a class="tab-inactive" href="graphs.html" alt="Graphs">Graphs</a>
+	  <a class="tab-inactive"  href="$Extras.wind_map" target="_blank" alt="Map">Map</a>
 	  <a class="tab-inactive" href="links.html" alt="Links">Links</a>
 	</div>
-    </header>
-    <div class="container">
-      <div class="column" id ="left-column">
-	<div class="small-box">
+	<div class="baufort">
+	  <img src="images/force5.png" />
+	</div>
+      </header>
+      <div class="container">
+	<div class="column" id ="left-column">
 	  <canvas id="gauge2" width="300" height="300"
 		  data-type="canv-gauge"
 		  data-title="Wind Speed"
@@ -72,8 +86,6 @@
 		  data-needle-end="80"
 		  data-value="$current.windSpeed"
 		  ></canvas>
-	</div>
-	<div class="small-box">
 	  <canvas id="gauge1" width="300" height="300"
 		  data-type="canv-gauge"
 		  data-title="Wind Direction"
@@ -104,8 +116,6 @@
 		  data-needle-end="70"
 		  data-value="$current.windDir"
 		  ></canvas>
-	</div>
-	<div class="small-box">
 	  <canvas id="gauge1" width="300" height="300"
 		  data-type="canv-gauge"
 		  data-title="Temp"
@@ -136,8 +146,6 @@
 		  data-needle-end="80"
 		  data-value="$current.outTemp"
 		  ></canvas>
-	</div>
-	<div class="small-box">
 	  <canvas id="gauge1" width="300" height="300"
 		  data-type="canv-gauge"
 		  data-title="Barometer"
@@ -168,36 +176,22 @@
 		  data-needle-end="80"
 		  data-value="$current.barometer"
 		  ></canvas>
-	</div>
-      </div>
-      <div class="column" id="center-column">
-	<div class="large-box">
+	  <br />
           <img class="graph" src="daywind.png" alt="wind" />
-	</div>
-	<div class="large-box">
           <img class="graph" src="daywindvec.png" alt="wind" />
-	</div>
-	<div class="large-box">
+	  <br />
           <img class="graph" src="daytempdew.png" alt="temperatures" />
-	</div>
-	<div class="large-box">
           <img class="graph" src="daybarometer.png" alt="barometer"/>
 	</div>
       </div>
-      <div class="column" id="right-column">
-	<div class="small-box">
-	  Weather report from YR
-	  Long list
-	</div>
-      </div>
     </div>
-<!---      <iframe src="$Extras.wind_map" alt="Radar" id="radar" class="space small" width="500px" height="500px">ASADSASDASDAD</iframe> --->
+    <!---      <iframe src="$Extras.wind_map" alt="Radar" id="radar" class="space small" width="500px" height="500px">ASADSASDASDAD</iframe> --->
     <footer>
       <div class="container">
-	The end
+	$current.dateTime
       </div>
     </footer>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
-    
+
