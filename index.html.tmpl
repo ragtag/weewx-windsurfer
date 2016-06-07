@@ -20,42 +20,39 @@
       url = url + ".txt";
       window.location=url;
       }
+      function show_day()
+      {
+      window.location.href = "index.html#day";
+      }
     </script>
+
   </head>
   <body>
     <div id="main">
       <header>
 	<div class="container">
-	  <div class="column">
- 	    <img id="logo" width="128px" height="128px" src="images/logo.png" />
-	  </div>
-          <h1>$Extras.site_title</h1>
-	  <div class="column">
-	    <img class="icon" src="images/globe.png" alt="Position" />
-	    <div class="location">
-	      $station.location <br />
-	      Lat: $station.latitude[0]&deg; $station.latitude[1]' <br />
-	      Long: $station.longitude[0]&deg; $station.longitude[1]'
-	    </div>
-	  </div>
-	  <div class="column">
-	    <img class="icon" src="images/sunrise.png" alt="Sunrise" /> $almanac.sunrise
-	  </div>
-	  <div class="column">
-	    <img class="icon" src="images/sunset.png" alt="Sunset" /> $almanac.sunset
-	  </div>
+	<div class="column">
+	  <a href="$Extras.home">
+ 	    <img id="logo" width="96px" height="96px" src="images/logo.png" />
+	  </a>
 	</div>
+        <h1 class="title">$Extras.site_title</h1>
+	<h3 class="location-name">$station.location </h3>
+	</div>
+
 	<div class="menu">
 	  <a class="tab-active" href="index.html" alt="Overview">Overview</a>
-	  <a class="tab-inactive"  href="$Extras.wind_map" target="_blank" alt="Map">Map</a>
-	  <a class="tab-inactive" href="links.html" alt="Links">Links</a>
+	  <a class="tab-inactive" href="$Extras.forecast" alt="Forecast">Forecast</a>
+	  <a class="tab-inactive" href="$Extras.wind_map" alt="Map">Map</a>
 	</div>
 	<div class="baufort">
 	  <img src="images/force5.png" />
 	</div>
       </header>
       <div class="container">
+
 	<div class="column" id ="left-column">
+
 	  <canvas id="gauge2" width="300" height="300"
 		  data-type="canv-gauge"
 		  data-title="Wind Speed"
@@ -176,19 +173,79 @@
 		  data-needle-end="80"
 		  data-value="$current.barometer"
 		  ></canvas>
+	  <iframe src="http://www.yr.no/place/Norway/Akershus/B%c3%a6rum/Rolfstangen/external_box_three_days.html" width="468" height="290" frameborder="0" style="margin: 10px 0 10px 0" scrolling="no"></iframe>
 	  <br />
-          <img class="graph" src="daywind.png" alt="wind" />
-          <img class="graph" src="daywindvec.png" alt="wind" />
-	  <br />
-          <img class="graph" src="daytempdew.png" alt="temperatures" />
-          <img class="graph" src="daybarometer.png" alt="barometer"/>
+
+
+	  <div class="submenu">
+	    <input id="tab-day" type="radio" name="tabs" checked />
+	    <label for="tab-day">Day</label>
+	    <input id="tab-week" type="radio" name="tabs" />
+	    <label for="tab-week">Week</label>
+	    <input id="tab-month" type="radio" name="tabs" />
+	    <label for="tab-month">Month</label>
+	    <input id="tab-year" type="radio" name="tabs" />
+	    <label for="tab-year">Year</label>
+	    
+	    <div class="graphs">
+	      <div id="day">
+		<img class="graph-image" src="daywind.png" alt="wind" />
+		<img class="graph-image" src="daywindvec.png" alt="wind" />
+		<br />
+		<img class="graph-image" src="daytempdew.png" alt="temperatures" />
+		<img class="graph-image" src="daybarometer.png" alt="barometer"/>
+	      </div>
+	      <div id="week">
+		<img class="graph-image" src="weekwind.png" alt="wind" />
+		<img class="graph-image" src="weekwindvec.png" alt="wind" />
+		<br />
+		<img class="graph-image" src="weektempdew.png" alt="temperatures" />
+		<img class="graph-image" src="weekbarometer.png" alt="barometer"/>
+	      </div>
+	      <div id="month">
+		<img class="graph-image" src="monthwind.png" alt="wind" />
+		<img class="graph-image" src="monthwindvec.png" alt="wind" />
+		<br />
+		<img class="graph-image" src="monthtempdew.png" alt="temperatures" />
+		<img class="graph-image" src="monthbarometer.png" alt="barometer"/>
+	      </div>
+	      <div id="year">
+		<img class="graph-image" src="yearwind.png" alt="wind" />
+		<img class="graph-image" src="yearwindvec.png" alt="wind" />
+		<br />
+		<img class="graph-image" src="yeartempdew.png" alt="temperatures" />
+		<img class="graph-image" src="yearbarometer.png" alt="barometer"/>
+	      </div>
+	    </div>
+	    
+	<div class="weather">
+	  <iframe src="http://www.yr.no/place/Norway/Akershus/B%c3%a6rum/Rolfstangen/external_box_hour_by_hour.html" width="1850" height="430" frameborder="0" style="margin: 10px 0 10px 0" scrolling="no"></iframe>
+	</div>
+
+	  </div>
+	  
 	</div>
       </div>
     </div>
-    <!---      <iframe src="$Extras.wind_map" alt="Radar" id="radar" class="space small" width="500px" height="500px">ASADSASDASDAD</iframe> --->
     <footer>
       <div class="container">
-	$current.dateTime
+	  <div class="column">
+	    <img class="icon" src="images/globe.png" alt="Position" />
+	    <div class="location">
+	      Lat: $station.latitude[0]&deg; $station.latitude[1]' <br />
+	      Long: $station.longitude[0]&deg; $station.longitude[1]'
+	    </div>
+	  </div>
+	  <div class="column">
+	    <img class="icon" src="images/globe.png" alt="Position" />
+	    $current.dateTime
+	  </div>
+	  <div class="column">
+	    <img class="icon" src="images/sunrise.png" alt="Sunrise" /> $almanac.sunrise
+	  </div>
+	  <div class="column">
+	    <img class="icon" src="images/sunset.png" alt="Sunset" /> $almanac.sunset
+	  </div>
       </div>
     </footer>
   </div>
