@@ -173,7 +173,6 @@
 		  data-needle-end="80"
 		  data-value="$current.barometer"
 		  ></canvas>
-	  <iframe src="http://www.yr.no/place/Norway/Akershus/B%c3%a6rum/Rolfstangen/external_box_three_days.html" width="468" height="290" frameborder="0" style="margin: 10px 0 10px 0" scrolling="no"></iframe>
 	  <br />
 
 
@@ -237,8 +236,11 @@
 	    </div>
 	  </div>
 	  <div class="column">
-	    <img class="icon" src="images/globe.png" alt="Position" />
-	    $current.dateTime
+	    <img class="icon" src="images/clock.png" alt="Time" />
+	    <div class="location">
+		 Last updated: <br />
+		 $current.dateTime
+		 </div>
 	  </div>
 	  <div class="column">
 	    <img class="icon" src="images/sunrise.png" alt="Sunrise" /> $almanac.sunrise
