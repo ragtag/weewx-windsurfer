@@ -30,7 +30,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="14.015625"
      inkscape:cx="32"
-     inkscape:cy="31.018984"
+     inkscape:cy="32"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -63,6 +63,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-988.36227)">
+    <rect
+       style="opacity:1;fill:#22ffff;fill-opacity:1;stroke:none;stroke-width:45;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5045"
+       width="63.857304"
+       height="63.785954"
+       x="0.14269789"
+       y="988.50494" />
     <g
        id="g5017"
        transform="matrix(0.03028065,0,0,0.03028065,-2.4870737,1022.9831)"
